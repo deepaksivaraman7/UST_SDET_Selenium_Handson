@@ -1,18 +1,38 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using SeleniumExamples;
 
-IWebDriver driver=new ChromeDriver();
-driver.Url = "https://www.google.com/";
-Thread.Sleep(5000);
-string title = "Google";
-try
+GHPTests gHPTests=new GHPTests();
+List<string> drivers = new()
 {
-    Assert.AreEqual("Google", title);
-    Console.WriteLine("Test passed");
-}
-catch (AssertionException ex)
+    "Edge","Chrome"
+};
+foreach (string driver in drivers)
 {
-    Console.WriteLine(ex.Message);
+    switch (driver)
+    {
+        case "Edge":
+            gHPTests.InitializeEdgeDriver();
+            break;
+        case "Chrome":
+            gHPTests.InitializeChromeDriver();
+            break;
+    }
+    try
+    {
+        gHPTests.TitleTest();
+        gHPTests.PageSourceAndUrlTest();
+        gHPTests.GoogleSearchTest();
+        gHPTests.GmailLinkTest();
+        gHPTests.ImagesLinkTest();
+        gHPTests.LocalizationTest();
+        gHPTests.GAppYoutubeTest();
+    }
+    catch (AssertionException ex)
+    {
+        Console.WriteLine("Test failed");
+        Console.WriteLine(ex.Message);
+    }
+    gHPTests.Destruct();
 }
-driver.Close();
