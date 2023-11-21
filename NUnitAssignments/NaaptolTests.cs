@@ -53,7 +53,7 @@ namespace NUnitAssignments
         }
         [Test]
         [Author("Deepak", "ust.com")]
-        [Description("Check for product view")]
+        [Description("Check for cart view")]
         [Order(4)]
         public void ProductViewTest()
         {
