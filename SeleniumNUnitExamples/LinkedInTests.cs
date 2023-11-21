@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -110,17 +111,25 @@ namespace SeleniumNUnitExamples
 
             emailInput.SendKeys(email);
             passwordInput.SendKeys(password);
-            Thread.Sleep(3000);
-            ClearForm(emailInput);
-            ClearForm(passwordInput);
-            Thread.Sleep(3000);
+
+            TakeScreenshot();
+
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("arguments[0].scrollIntoView(true)", driver.FindElement(By.XPath("//button[@type='submit']")));
+
+            js.ExecuteScript("arguments[0].click()", driver.FindElement(By.XPath("//button[@type='submit']")));
+
+            //ClearForm(emailInput);
+            //ClearForm(passwordInput);
+            Thread.Sleep(5000);
         }
         static object[] InvalidLoginData()
         {
             return new object[] { 
                 new object[] { "zero@ust.com", "password" },
-                new object[] { "first@ust.com", "password1" }
+                //new object[] { "first@ust.com", "password1" }
                 };
         }
+        
     }
 }

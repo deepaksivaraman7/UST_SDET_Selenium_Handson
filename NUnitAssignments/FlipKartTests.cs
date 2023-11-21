@@ -56,7 +56,8 @@ namespace NUnitAssignments
             fluentWait.PollingInterval = TimeSpan.FromMilliseconds(100);
             fluentWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
             fluentWait.Message = "Element not found";
-            Thread.Sleep(3000);
+            IWebElement element = driver.FindElement(By.ClassName("_352bdz"));
+            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true)", element);
             driver.FindElement(By.XPath("//*[@class='_2KpZ6l _2U9uOA _3v1-ww']")).Click();
             driver.FindElement(By.ClassName("_3SkBxJ")).Click();
             List<IWebElement> cartItems = driver.FindElements(By.ClassName("_2nQDXZ")).ToList();

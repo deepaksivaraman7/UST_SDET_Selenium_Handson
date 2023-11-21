@@ -46,6 +46,14 @@ namespace SeleniumNUnitExamples
                 return false;
             }
         }
+        public void TakeScreenshot()
+        {
+            ITakesScreenshot ts = (ITakesScreenshot)driver;
+            Screenshot ss = ts.GetScreenshot();
+            string currDir = Directory.GetParent("../../../").FullName;
+            string filePath = currDir + "/Screenshots/Screenshot_" + DateTime.Now.ToString("yyyyMMdd_Hmmss") + ".png";
+            ss.SaveAsFile(filePath);
+        }
         [OneTimeSetUp]
         public void InitializeBrowser() 
         {
