@@ -16,7 +16,7 @@ namespace Naaptol.TestScripts
         public void AddToCartTests()
         {
             var homePage = new NaaptolHomePage(driver);
-            if (!driver.Url.Equals("https://www.naaptol.com/")) ;
+            if (!driver.Url.Equals("https://www.naaptol.com/"))
             {
                 driver.Navigate().GoToUrl("https://www.naaptol.com");
             }
