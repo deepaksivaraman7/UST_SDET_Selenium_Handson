@@ -35,5 +35,13 @@ namespace Naaptol.PageObjects
             SearchButton?.Click();
             return new ProductsPage(driver);
         }
+        public void ProductSelect(string position)
+        {
+            driver.FindElement(By.Id("productItem" + position)).Click();
+        }
+        public void ClearSearchBar()
+        {
+            SearchBar?.Clear();
+        }
     }
 }

@@ -18,15 +18,15 @@ namespace Naaptol.PageObjects
         }
 
         //Arrange
-        [FindsBy(How = How.Id, Using = "productItem5")]
-        public IWebElement? Product { get; set; }
+        //[FindsBy(How = How.Id, Using = "productItem5")]
+        //public IWebElement? Product { get; set; }
 
 
 
         //Act
-        public void ProductSelect()
+        public void ProductSelect(string position)
         {
-            Product?.Click();
+            driver.FindElement(By.Id("productItem" + position)).Click();
         }
         
 

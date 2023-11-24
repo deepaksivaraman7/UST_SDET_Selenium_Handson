@@ -69,6 +69,7 @@ namespace SeleniumNUnitExamples
             driver.Url = properties["baseUrl"];
             driver.Manage().Window.Maximize();
         }
+
         [OneTimeTearDown] 
         public void Cleanup()
         {

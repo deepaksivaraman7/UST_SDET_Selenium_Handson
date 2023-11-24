@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -12,6 +12,9 @@
   <ItemGroup>
 	  <PackageReference Include="DotNetSeleniumExtras.PageObjects" Version="3.11.0" />
 	  <PackageReference Include="DotNetSeleniumExtras.PageObjects.Core" Version="4.14.1" />
+	  <PackageReference Include="ExcelDataReader" Version="3.6.0" />
+	  <PackageReference Include="ExcelDataReader.DataSet" Version="3.6.0" />
+	  <PackageReference Include="ExtentReports" Version="5.0.1" />
 	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.1" />
 	  <PackageReference Include="NUnit" Version="3.13.3" />
 	  <PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />
@@ -21,6 +24,12 @@
 	  <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="119.0.6045.10500" />
 	  <PackageReference Include="Selenium.WebDriver.MSEdgeDriver" Version="119.0.2151.42" />
 	  <PackageReference Include="SeleniumExtras.WaitHelpers" Version="1.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ExtentReports\" />
+    <Folder Include="Screenshots\" />
+    <Folder Include="TestData\" />
   </ItemGroup>
 
 </Project>

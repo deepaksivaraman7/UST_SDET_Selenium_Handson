@@ -20,17 +20,27 @@ namespace SeleniumNUnitExamples
             string title = driver.Title;
             Assert.AreEqual("Google", title);
         }
-        [Ignore("Other")]
+        //[Ignore("Other")]
         [Test]
         [Order(2)]
         public void GSTest()
         {
-            IWebElement searchInputTextBox = driver.FindElement(By.Id("APjFqb"));
-            searchInputTextBox.SendKeys("hp laptop");
-            Thread.Sleep(2000);
-            IWebElement googleSearchButton = driver.FindElement(By.ClassName("gNO89b"));//Name("btnK"));
-            googleSearchButton.Click();
-            Assert.AreEqual("hp laptop - Google Search", driver.Title);
+            string currDir = Directory.GetParent(@"../../../")?.FullName;
+            string excelFilePath = currDir + "\\InputData.xlsx";
+            Console.WriteLine(excelFilePath);
+            List<ExcelData>excelDataList=ExcelUtils.ReadExcelData(excelFilePath);
+            foreach (var excelData in excelDataList)
+            {
+                Console.WriteLine($"Text: {excelData.SearchText}");
+
+                IWebElement searchInputTextBox = driver.FindElement(By.Id("APjFqb"));
+                searchInputTextBox.SendKeys(excelData.SearchText);
+                Thread.Sleep(2000);
+                IWebElement googleSearchButton = driver.FindElement(By.ClassName("gNO89b"));//Name("btnK"));
+                googleSearchButton.Click();
+                Assert.That(driver.Title, Is.EqualTo(excelData.SearchText+" - Google Search"));
+                driver.Navigate().GoToUrl("https://www.google.com/");
+            }
         }
         [Ignore("Other")]
         [Test]
