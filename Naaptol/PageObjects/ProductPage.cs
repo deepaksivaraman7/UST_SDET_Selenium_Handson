@@ -29,8 +29,8 @@ namespace Naaptol.PageObjects
         [FindsBy(How = How.XPath, Using = "//input[contains(@name,'btnchkavail')]")]
         public IWebElement? CheckAvailabilityButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='cartData']/li[1]/div[2]/h2/a")]
-        public IWebElement? CartItem { get; set; }
+        //[FindsBy(How = How.XPath, Using = "//*[@id='cartData']/li[1]/div[2]/h2/a")]
+        //public IWebElement? CartItem { get; set; }
 
         [FindsBy(How = How.LinkText, Using = "Remove")]
         public IWebElement? RemoveProductLink { get; set; }
@@ -53,9 +53,15 @@ namespace Naaptol.PageObjects
         }
         public string? GetCartItemUrl()
         {
+            DefaultWait<IWebDriver> fluentWait = new(driver);
+            fluentWait.Timeout = TimeSpan.FromSeconds(5);
+            fluentWait.PollingInterval = TimeSpan.FromMilliseconds(100);
+            fluentWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            fluentWait.Message = "Element not found";
             try
             {
-                return CartItem?.GetAttribute("href");
+                IWebElement cartItem=fluentWait.Until(d => d.FindElement(By.XPath("//*[@id='cartData']/li[1]/div[2]/h2/a")));
+                return cartItem.GetAttribute("href");
             }
             catch
             {

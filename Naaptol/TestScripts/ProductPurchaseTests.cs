@@ -43,7 +43,6 @@ namespace Naaptol.TestScripts
                     var productPage = new ProductPage(driver);
                     productPage.SelectSize();
                     productPage.BuyButtonClick();
-                    Thread.Sleep(2000);
                     TakeScreenshot();
                     Assert.That(productPage.GetCartItemUrl(), Is.EqualTo(productPage.GetCurrentUrl()));
                     int prevquantity = productPage.GetQuantity();
