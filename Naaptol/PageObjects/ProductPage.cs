@@ -42,10 +42,19 @@ namespace Naaptol.PageObjects
         public IWebElement? CloseButton { get; set; }
 
         //Act
-        public void SelectSize()
+        public bool SelectSize()
         {
-            Thread.Sleep(2000);
-            Size?.Click();
+            try
+            {
+                Size?.Click();
+                return true;
+            }
+            
+            catch
+            {
+                return false;
+            }
+
         }
         public void BuyButtonClick()
         {
@@ -76,9 +85,7 @@ namespace Naaptol.PageObjects
         {
             int quantity = Convert.ToInt32(Quantity?.GetAttribute("qty")) + 1;
             Quantity?.Click();
-
             Quantity?.SendKeys(Keys.Delete);
-
             Quantity?.SendKeys(quantity.ToString());
         }
         public int GetQuantity()

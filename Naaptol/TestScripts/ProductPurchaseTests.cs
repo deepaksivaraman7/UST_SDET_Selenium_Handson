@@ -47,7 +47,11 @@ namespace Naaptol.TestScripts
                     driver.SwitchTo().Window(listWindows[1]);
 
                     var productPage = new ProductPage(driver);
-                    productPage.SelectSize();
+                    bool isSizeSelected=productPage.SelectSize();
+
+                    TakeScreenshot();
+                    Assert.That(isSizeSelected, Is.True); //2 test cases will fail here
+
                     productPage.BuyButtonClick();
 
                     TakeScreenshot();
