@@ -61,7 +61,7 @@ namespace Naaptol.TestScripts
                     productPage.QuantityIncrease();
 
                     TakeScreenshot();
-                    Assert.That(prevquantity + 1 == productPage.GetQuantity());
+                    Assert.That(prevquantity + 1, Is.EqualTo(productPage.GetQuantity()));
 
                     productPage.RemoveProductLinkClick();
 

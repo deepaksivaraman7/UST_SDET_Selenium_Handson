@@ -3,6 +3,7 @@ using AventStack.ExtentReports.Reporter;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,6 +65,19 @@ namespace BunnyCart.Utilities
             string currDir = Directory.GetParent("../../../").FullName;
             string filePath = currDir + "/Screenshots/Screenshot_" + DateTime.Now.ToString("yyyyMMdd_Hmmss") + ".png";
             ss.SaveAsFile(filePath);
+        }
+        protected void LogTestResult(string testName,string result,string errorMessage = null)
+        {
+            Log.Information(result);
+            test = extent.CreateTest(testName);
+            if (errorMessage == null)
+            {
+                test.Pass(result);
+            }
+            else
+            {
+                Log.Error($"Test failed for {testName}\nException: {errorMessage}");
+            }
         }
         [OneTimeSetUp]
         public void InitializeBrowser() 
